@@ -4,7 +4,7 @@ class PatientAuthController < ApplicationController
         
     def create
         patient = Patient.find_by(email: params[:email])
-        if parent&.authenticate(params[:password])
+        if patient&.authenticate(params[:password])
             token = encode_token(patient_id: patient.id)
             render json: { patient: PatientSerializer.new(patient), jwt: token }, status: :accepted
         else

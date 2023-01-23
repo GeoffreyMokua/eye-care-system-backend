@@ -25,13 +25,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_111942) do
   create_table "doctors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "password_digest"
     t.string "date_of_birth"
     t.string "experience"
     t.string "gender"
     t.string "image"
     t.string "specialist"
     t.string "email"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,8 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_111942) do
   create_table "patients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "password_digest"
     t.string "email"
-    t.string "password"
     t.string "date_of_birth"
     t.string "phone_number"
     t.datetime "created_at", null: false
