@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_message
     rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
-    skip_before_action :authorize, only: [:create]
+    skip_before_action :authorize, only: [:create, :index, :show]
     def create 
     service = Service.create!(service_params)
     token = encode_token({service_id: service.id})
@@ -19,7 +19,7 @@ class ServicesController < ApplicationController
     
     private
     def parent_params
-    params.permit(:name,:image,:description,:doctor_id, :cost)
+    params.permit(:name,:img,:description,:doctor_id, :cost)
     end
     def invalid_message(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity

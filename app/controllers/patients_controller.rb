@@ -18,7 +18,7 @@ class PatientsController < ApplicationController
     end
     
     private
-    def parent_params
+    def patient_params
     params.permit(:first_name,:last_name,:phone_number,:password, :email, :date_of_birth)
     end
     def invalid_message(invalid)

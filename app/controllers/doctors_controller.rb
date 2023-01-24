@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
      rescue_from ActiveRecord::RecordInvalid, with: :invalid_message
     rescue_from ActiveRecord::RecordNotFound, with: :not_found_message
-    skip_before_action :authorize, only: [:create]
+    skip_before_action :authorize, only: [:create, :index, :show]
     def create 
     doctor = Doctor.create!(doctor_params)
     token = encode_token({doctor_id: doctor.id})
@@ -19,7 +19,7 @@ class DoctorsController < ApplicationController
     
     private
     def doctor_params
-    params.permit(:first_name,:last_name, :password, :email, :date_of_birth, :gender, :image, :specialist, :experience)
+    params.permit(:first_name,:last_name, :password, :email, :date_of_birth, :gender, :img, :specialist, :experience)
     end
     def invalid_message(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity

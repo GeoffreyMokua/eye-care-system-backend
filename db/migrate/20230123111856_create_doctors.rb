@@ -7,7 +7,7 @@ class CreateDoctors < ActiveRecord::Migration[7.0]
       t.string :date_of_birth
       t.string :experience
       t.string :gender
-      t.string :image
+      t.string :img
       t.string :specialist
       t.string :email
      

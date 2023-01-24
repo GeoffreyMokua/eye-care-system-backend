@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_111942) do
     t.string "date_of_birth"
     t.string "experience"
     t.string "gender"
-    t.string "image"
+    t.string "img"
     t.string "specialist"
     t.string "email"
     t.datetime "created_at", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_111942) do
 
   create_table "services", force: :cascade do |t|
     t.string "name"
-    t.string "image"
+    t.string "img"
     t.string "description"
     t.string "doctor_id"
     t.string "cost"
