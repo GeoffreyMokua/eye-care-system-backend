@@ -4,7 +4,7 @@ class DoctorsController < ApplicationController
     skip_before_action :authorize, only: [:create]
     def create 
     doctor = Doctor.create!(doctor_params)
-    token = encode_token({doctor_id: patient.id})
+    token = encode_token({doctor_id: doctor.id})
     render json: {doctor: DoctorSerializer.new(doctor), jwt: token}, status: :created
     end
     def index 
@@ -18,8 +18,8 @@ class DoctorsController < ApplicationController
     end
     
     private
-    def parent_params
-    params.permit(:first_name,:last_name, :password, :email, :date_of_birth, :gender, :image, :specialist)
+    def doctor_params
+    params.permit(:first_name,:last_name, :password, :email, :date_of_birth, :gender, :image, :specialist, :experience)
     end
     def invalid_message(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
