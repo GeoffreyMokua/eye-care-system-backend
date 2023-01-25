@@ -5,7 +5,7 @@ class ServicesController < ApplicationController
     def create 
     service = Service.create!(service_params)
     token = encode_token({service_id: service.id})
-    render json: {patient: ServiceSerializer.new(patient), jwt: token}, status: :created
+    render json: {service: ServiceSerializer.new(service), jwt: token}, status: :created
     end
     def index 
     services = Service.all
@@ -13,12 +13,12 @@ class ServicesController < ApplicationController
     end
     
     def show
-    service = Patient.find(params[:id])
+    service = Service.find(params[:id])
     render json: service, status: :ok
     end
     
     private
-    def parent_params
+    def service_params
     params.permit(:name,:img,:description,:doctor_id, :cost)
     end
     def invalid_message(invalid)
